@@ -27,7 +27,7 @@ def read_input():
 
 def print_occurrences(output):
     # this function should control output, it doesn't need any return
-    print(' '.join(map(str, output))) 
+    print(' '.join(output)) 
 
 def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
@@ -50,7 +50,7 @@ def get_occurrences(pattern, text):
     for i in range(n - m +1):
         if h_text[i] == h_pattern:
             if text[i:i+m] == pattern:
-                position.append(i)
+                position.append(str(i))
 
     # and return an iterable variable
     return position
