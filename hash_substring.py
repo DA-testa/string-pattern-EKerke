@@ -27,25 +27,24 @@ def read_input():
 
 def print_occurrences(output):
     # this function should control output, it doesn't need any return
-    #print(' '.join(map(str, output))) 
-    print(output)
+    print(' '.join(map(str, output))) 
 
 def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
-    m = len(pattern)
-    n = len(text)
-    p = 31
-    q = 10**9+7
-    h_pattern = 0
-    for i in range(m):
-        h_pattern = (h_pattern * p + ord(pattern[i])) % q
+    #m = len(pattern)
+    #n = len(text)
+    #p = 31
+    #q = 10**9+7
+    #h_pattern = 0
+    #for i in range(m):
+        #h_pattern = (h_pattern * p + ord(pattern[i])) % q
 
-    h_text = [0] * (n - m + 1)
-    h_text[0] = 0
-    for i in range(m):
-        h_text[0] = (h_text[0] * p + ord(pattern[i])) % q
-    for i in range(1, n - m + 1):
-        h_text[i] = ((h_text[i-1] - ord(text[i-1]) * pow(p, m-1, q)) * p + ord(text[i+m-1])) % q
+    #h_text = [0] * (n - m + 1)
+    #h_text[0] = 0
+    #for i in range(m):
+        #h_text[0] = (h_text[0] * p + ord(pattern[i])) % q
+    #for i in range(1, n - m + 1):
+        #h_text[i] = ((h_text[i-1] - ord(text[i-1]) * pow(p, m-1, q)) * p + ord(text[i+m-1])) % q
 
     #position = []
     #for i in range(n - m +1):
@@ -53,19 +52,22 @@ def get_occurrences(pattern, text):
             #if text[i:i+m] == pattern:
                 #position.append(i)
 
-    # and return an iterable variable
-    #return position
+    p_len = len(pattern)
+    t_len = len(text)
+    p_hash = hash(pattern)
+    t_hash = hash(text[:p_len])
+    p_power = 31 ** (p_len - 1)
 
-    max_occurrence = -1
-    max_occurrence_index = -1
-    for i in range(n - m + 1):
-        if h_text[i] == h_pattern:
-            if text[i:i + m] == pattern:
-                if max_occurrence < h_text[i]:
-                    max_occurrence = h_text[i]
-                    max_occurrence_index = i
-    
-    return max_occurrence_index 
+    positions = []
+
+    for i in range(t_len - p_len + 1):
+        if p_hash == t_hash and pattern == text[i:i+p_len]:
+            positions.append(i)
+        if i < t_len - p_len:
+            t_hash = (t_hash - ord(text[i]) * p_power) * 31 + ord(text[i+p_len])
+
+    # and return an iterable variable
+    return position
 
 
 # this part launches the functions
