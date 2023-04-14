@@ -28,7 +28,7 @@ def read_input():
 def print_occurrences(output):
     # this function should control output, it doesn't need any return
     if len(output) == 0: 
-        print([]) 
+        print() 
     else: 
         print(' '.join(map(str, output))) 
 
