@@ -42,20 +42,18 @@ def get_occurrences(pattern, text):
     for i in range(m):
         h_pattern = (h_pattern * p + ord(pattern[i])) % q
 
-    h_text = 0
+    h_text = [0] * (n - m + 1)
+    h_text[0] = 0
     for i in range(m):
         h_text[0] = (h_text[0] * p + ord(pattern[i])) % q
+    for i in range(1, n - m + 1):
+        h_text[i] = ((h_text[i-1] - ord(text[i-1]) * pow(p, m-1, q)) * p + ord(text[i+m-1])) % q
 
-    position = [] 
-    if h_text == h_pattern and text[:m] == pattern:
-        position.append(0)
-
-    p_pow = pow(p, m-1, q) 
-    for i in range(1, n - m + 1): 
-        h_text = (h_text - ord(text[i-1]) * p_pow) % q 
-        h_text = (h_text * p + ord(text[i+m-1])) % q 
-        if h_text == h_pattern and text[i:i+m] == pattern: 
-            position.append(i) 
+    position = []
+    for i in range(n - m +1):
+        if h_text[i] == h_pattern:
+            if text[i:i+m] == pattern:
+                position.append(i)
 
     # and return an iterable variable
     return position
