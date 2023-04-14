@@ -33,16 +33,17 @@ def get_occurrences(pattern, text):
     m = len(pattern)
     n = len(text)
     p = 31
+    q = 10**9+7
     h_pattern = 0
     for i in range(m):
-        h_pattern = (h_pattern * p + ord(pattern[i])) % 10**9+7
+        h_pattern = (h_pattern * p + ord(pattern[i])) % q
 
     h_text = [0] * (n - m + 1)
     h_text[0] = 0
     for i in range(m):
-        h_text[0] = (h_text[0] * p + ord(pattern[i])) % 10**9+7
+        h_text[0] = (h_text[0] * p + ord(pattern[i])) % 1q
     for i in range(1, n - m + 1):
-        h_text[i] = ((h_text[i-1] - ord(text[i-1]) * pow(p, m-1, 10**9+7)) * p + ord(text[i+m-1])) % 10**9+7
+        h_text[i] = ((h_text[i-1] - ord(text[i-1]) * pow(p, m-1, q)) * p + ord(text[i+m-1])) % q
 
     pozition = []
     for i in range(n - m +1):
