@@ -46,14 +46,17 @@ def get_occurrences(pattern, text):
     for i in range(1, n - m + 1):
         h_text[i] = ((h_text[i-1] - ord(text[i-1]) * pow(p, m-1, q)) * p + ord(text[i+m-1])) % q
 
-    position = []
+    maxValue = -1
+    maxPosition = -1 
     for i in range(n - m + 1):
         if h_text[i] == h_pattern:
             if text[i:i+m] == pattern:
-                position.append(i)
+                if h_text[i] > maxValue: 
+                    maxValue = h_text[i]
+                    maxPosition = i
 
     # and return an iterable variable
-    return position
+    return maxPosition
 
 
 # this part launches the functions
