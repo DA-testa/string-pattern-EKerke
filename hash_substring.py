@@ -40,7 +40,7 @@ def get_occurrences(pattern, text):
     h_text = [0] * (n - m + 1)
     h_text[0] = 0
     for i in range(m):
-        h_text[0] = (h_text * p + ord(pattern[i])) % 10**9+7
+        h_text[0] = (h_text[0] * p + ord(pattern[i])) % 10**9+7
     for i in range(1, n - m + 1):
         h_text[i] = ((h_text[i-1] - ord(text[i-1]) * pow(p, m-1, 10**9+7)) * p + ord(text[i+m-1])) % 10**9+7
 
