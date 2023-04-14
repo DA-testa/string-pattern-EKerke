@@ -67,7 +67,7 @@ def get_occurrences(pattern, text):
             t_hash = (t_hash - ord(text[i]) * p_power) * 31 + ord(text[i+p_len])
 
     # and return an iterable variable
-    return position
+    return positions
 
 
 # this part launches the functions
