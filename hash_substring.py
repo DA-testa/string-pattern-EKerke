@@ -49,12 +49,13 @@ def get_occurrences(pattern, text):
         print('h_text[{}]:'.format(i), h_text[i])
 
     position = []
-    for i in range(n - m +1):
+    for i in range(n - m + 1):
         if h_text[i] == h_pattern:
             if text[i:i+m] == pattern:
                 position.append(i)
 
     # and return an iterable variable
+    print('position:', position)
     return position
 
 
