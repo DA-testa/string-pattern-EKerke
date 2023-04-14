@@ -1,4 +1,5 @@
 # python3
+import sys
 
 def read_input():
     # this function needs to aquire input both from keyboard and file
@@ -26,7 +27,10 @@ def read_input():
 
 def print_occurrences(output):
     # this function should control output, it doesn't need any return
-    print(' '.join(map(str, output)))
+    if len(output) == 0: 
+        print('') 
+    else: 
+        print(' '.join(map(str, output))) 
 
 def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
@@ -57,5 +61,8 @@ def get_occurrences(pattern, text):
 
 # this part launches the functions
 if __name__ == '__main__':
-    print_occurrences(get_occurrences(*read_input()))
+    try: 
+        print_occurrences(get_occurrences(*read_input())) 
+    except EOFError: 
+        sys.exit(1) 
 
