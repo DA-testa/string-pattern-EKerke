@@ -28,7 +28,7 @@ def read_input():
 def print_occurrences(output):
     # this function should control output, it doesn't need any return
     if len(output) == 0: 
-        print('') 
+        print([]) 
     else: 
         print(' '.join(map(str, output))) 
 
@@ -49,14 +49,14 @@ def get_occurrences(pattern, text):
     for i in range(1, n - m + 1):
         h_text[i] = ((h_text[i-1] - ord(text[i-1]) * pow(p, m-1, q)) * p + ord(text[i+m-1])) % q
 
-    pozition = []
+    position = []
     for i in range(n - m +1):
         if h_text[i] == h_pattern:
             if text[i:i+m] == pattern:
-                pozition.append(i)
+                position.append(i)
 
     # and return an iterable variable
-    return pozition
+    return position
 
 
 # this part launches the functions
