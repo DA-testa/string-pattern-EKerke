@@ -7,7 +7,7 @@ def read_input():
     in_type = input().rstrip().lower()
     if in_type == 'f':
         path = input().rstrip()
-        with open(f"./tests/{path}") as f:
+        with open(path, 'r') as f:
             pattern = f.readline().rstrip()
             text = f.readline().rstrip()
     else:
