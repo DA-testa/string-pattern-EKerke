@@ -6,8 +6,8 @@ def read_input():
     # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
     in_type = input().rstrip().lower()
     if in_type == 'f':
-        path = input() #.rstrip()
-        with open(path, 'r') as f:
+        path = input().rstrip()
+        with open(f"./tests/{path}") as f:
             pattern = f.readline().rstrip()
             text = f.readline().rstrip()
     else:
