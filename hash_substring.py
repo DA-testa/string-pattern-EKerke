@@ -14,7 +14,8 @@ def read_input():
         pattern = input().strip()
         text = input().strip()
 
-    
+    print(f"pattern: {pattern}")
+    print(f"text: {text}")
     # after input type choice
     # read two lines 
     # first line is pattern 
@@ -31,25 +32,25 @@ def print_occurrences(output):
 
 def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
-    m = len(pattern)
-    n = len(text)
+    m = len(pattern) 
+    n = len(text) 
     p = 31 # a prime number for hashing 
-    q = 10**9+9
-    h = p ** (m - 1) % (10**9+9)
-    h_pattern = 0
-    h_text = 0
-    position = []
+    q = 10**9+9 
+    h = p ** (m - 1) % (10**9+9) 
+    h_pattern = 0 
+    h_text = 0 
+    position = [] 
 
-    for i in range(m):
-        h_pattern = (h_pattern * p + ord(pattern[i])) % q
-        h_text = (h_text * p + ord(text[i])) % q
+    for i in range(m): 
+        h_pattern = (h_pattern * p + ord(pattern[i])) % q 
+        h_text = (h_text * p + ord(text[i])) % q  
         
-    for i in range(n - m + 1):
-        if h_pattern == h_text and text[i:i+m] == pattern:
+    for i in range(n - m + 1): 
+        if h_pattern == h_text and text[i:i+m] == pattern: 
             position.append(i) 
-        if i < n - m:
-            h_text = (h_text - ord(text[i]) * h) % q
-            h_text = (h_text * p + ord(text[i + m])) % q
+        if i < n - m: 
+            h_text = (h_text - ord(text[i]) * h) % q 
+            h_text = (h_text * p + ord(text[i + m])) % q 
 
     # and return an iterable variable
     return position
@@ -57,6 +58,8 @@ def get_occurrences(pattern, text):
 
 # this part launches the functions
 if __name__ == '__main__':
+    print("Enter input type: (f for file, i for keyboard)")
+    print("Enter pattern and text separated by newlines:")
     print_occurrences(get_occurrences(*read_input())) 
     
 
