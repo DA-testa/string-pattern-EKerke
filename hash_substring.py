@@ -4,18 +4,17 @@ import sys
 def read_input():
     # this function needs to aquire input both from keyboard and file
     # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
-    in_type = input().strip().lower()
+    in_type = input().rstrip().lower()
     if in_type == 'f':
-        path = input().strip()
+        path = input().rstrip()
         with open(path, 'r') as f:
-            pattern = f.readline().strip()
-            text = f.readline().strip()
+            pattern = f.readline().rstrip()
+            text = f.readline().rstrip()
     else:
-        pattern = input().strip()
-        text = input().strip()
+        pattern = input().rstrip()
+        text = input().rstrip()
 
-    print(f"pattern: {pattern}")
-    print(f"text: {text}")
+    
     # after input type choice
     # read two lines 
     # first line is pattern 
@@ -58,8 +57,6 @@ def get_occurrences(pattern, text):
 
 # this part launches the functions
 if __name__ == '__main__':
-    print("Enter input type: (f for file, i for keyboard)")
-    print("Enter pattern and text separated by newlines:")
     print_occurrences(get_occurrences(*read_input())) 
     
 
