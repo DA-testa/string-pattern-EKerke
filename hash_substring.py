@@ -58,8 +58,6 @@ def get_occurrences(pattern, text):
 
 # this part launches the functions
 if __name__ == '__main__':
-    try: 
-        print_occurrences(get_occurrences(*read_input())) 
-    except EOFError: 
-        sys.exit(1) 
+    print_occurrences(get_occurrences(*read_input())) 
+    
 
